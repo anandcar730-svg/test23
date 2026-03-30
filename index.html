@@ -95,7 +95,7 @@ footer{background:#111;color:white;text-align:center;padding:15px;}
 <p>Certification Course</p>
 
 <input type="text" id="name3" placeholder="Enter your name" style="width:100%;padding:8px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
-<a class="btn" href="https://wa.me/919446878807?text=I%20want%203%20month%20course">Enquire</a>
+<button class="btn" onclick="sendWhatsApp('3 Month Course','name3')">Enquire</button>
 <br>
 <button class="btn" onclick="payUPI(25000,'3 Month Course','name3')">Pay via UPI</button>
 </div>
@@ -105,7 +105,7 @@ footer{background:#111;color:white;text-align:center;padding:15px;}
 <p>Diploma Course</p>
 
 <input type="text" id="name6" placeholder="Enter your name" style="width:100%;padding:8px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
-<a class="btn" href="https://wa.me/919446878807?text=I%20want%206%20month%20course">Enquire</a>
+<button class="btn" onclick="sendWhatsApp('6 Month Course','name6')">Enquire</button>
 <br>
 <button class="btn" onclick="payUPI(50000,'6 Month Course','name6')">Pay via UPI</button>
 </div>
@@ -169,6 +169,13 @@ function payUPI(amount,course,inputId){
   var note=encodeURIComponent(name+' - '+course);
   var url=`upi://pay?pa=raji.shaji.shalom99@okaxis&pn=Dorcas%20Institute&am=${amount}&cu=INR&tn=${note}`;
   window.location.href=url;
+}
+function sendWhatsApp(course,inputId){
+  var name=document.getElementById(inputId).value;
+  if(!name){alert('Please enter your name');return;}
+  var msg=encodeURIComponent('Hello, I am '+name+' and I want details about '+course);
+  var url=`https://wa.me/919446878807?text=${msg}`;
+  window.open(url,'_blank');
 }
 </script>
 
