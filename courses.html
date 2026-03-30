@@ -22,7 +22,6 @@ nav a{margin:0 10px;text-decoration:none;color:#333;font-weight:600;}
 
 h2{color:#ff3399;margin-bottom:20px;}
 
-/* CARDS */
 .card{
 background:white;
 padding:20px;
@@ -37,20 +36,20 @@ background:linear-gradient(45deg,#ff3399,#cc66ff);
 padding:10px 20px;
 border-radius:25px;
 color:white;
-text-decoration:none;
-display:inline-block;
+border:none;
+cursor:pointer;
 margin-top:10px;
 }
 
-/* PAYMENT BUTTON */
-.pay{
-background:#0F9D58;
-}
+.pay{background:#0F9D58;}
 
-/* QR */
-.qr{
-width:150px;
-margin-top:10px;
+.qr{width:150px;margin-top:10px;}
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
 }
 </style>
 
@@ -75,17 +74,20 @@ margin-top:10px;
 
 <div class="card">
 <h3>3 Month Course</h3>
-<p>Basic Fashion Designing Certification</p>
+<p>Certification Course</p>
 
-<a class="btn" href="https://wa.me/919446878807?text=I want 3 month course">
+
+<input type="text" id="name3" placeholder="Enter your name">
+
+<button class="btn" onclick="sendWhatsApp('3 Month Course','name3')">
 Enquire
-</a>
+</button>
 
 <br>
 
-<a class="btn pay" href="upi://pay?pa=raji.shaji.shalom99@okaxis&pn=Dorcas&am=5000&cu=INR">
-Pay via GPay
-</a>
+<button class="btn pay" onclick="payUPI(25000,'3 Month Course','name3')">
+Pay via UPI
+</button>
 
 <p>Scan & Pay</p>
 <img src="./gpayqr.png" class="qr">
@@ -97,21 +99,41 @@ Pay via GPay
 <h3>6 Month Course</h3>
 <p>Diploma in Fashion Designing</p>
 
-<a class="btn" href="https://wa.me/919446878807?text=I want 6 month course">
+
+<input type="text" id="name6" placeholder="Enter your name">
+
+<button class="btn" onclick="sendWhatsApp('6 Month Course','name6')">
 Enquire
-</a>
+</button>
 
 <br>
 
-<a class="btn pay" href="upi://pay?pa=raji.shaji.shalom99@okaxis&pn=Dorcas&am=10000&cu=INR">
-Pay via GPay
-</a>
+<button class="btn pay" onclick="payUPI(50000,'6 Month Course','name6')">
+Pay via UPI
+</button>
 
 <p>Scan & Pay</p>
 <img src="./gpayqr.png" class="qr">
 </div>
 
 </section>
+
+<script>
+function sendWhatsApp(course,id){
+  let name=document.getElementById(id).value;
+  if(!name){alert("Enter your name");return;}
+  let msg=encodeURIComponent("Hello, I am "+name+" and I want details about "+course);
+  window.open("https://wa.me/919446878807?text="+msg,'_blank');
+}
+
+function payUPI(amount,course,id){
+  let name=document.getElementById(id).value;
+  if(!name){alert("Enter your name");return;}
+  let note=encodeURIComponent(name+" - "+course);
+  let url=`upi://pay?pa=raji.shaji.shalom99@okaxis&pn=Dorcas%20Institute&am=${amount}&cu=INR&tn=${note}`;
+  window.location.href=url;
+}
+</script>
 
 </body>
 </html>
